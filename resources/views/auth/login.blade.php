@@ -5,10 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">{{ isset($url) ? ucwords($url) : ""}} {{ __('Login') }}</div>
 
                 <div class="card-body">
+                    @isset($url)
+                    <form method="POST" action="{{ route('admin.login') }}">
+                    @else
                     <form method="POST" action="{{ route('login') }}">
+                    @endisset
                         @csrf
 
                         <div class="form-group row">
