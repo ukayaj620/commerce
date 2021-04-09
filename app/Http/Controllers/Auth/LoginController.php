@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 class LoginController extends Controller
 {
     /*
@@ -36,5 +39,32 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
+    }
+
+    public function showAdminLogin()
+    {
+        return view('auth.login', ['url' => 'admin']);
+    }
+
+    public function adminLogin(Request $request)
+    {
+        $this->validate($request,
+            [
+                'email' => 'required|string|email',
+                'password' => 'required|string|min:8'
+            ]
+        );
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+            return redirect()->intended(route('admin.home'));
+        }
+        
+        return redirect()->back()->withInput($request->only('email', 'remember'));
+    }
+
+    public function adminLogout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+        return redirect('/admin');
     }
 }
