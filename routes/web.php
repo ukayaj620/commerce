@@ -26,12 +26,9 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->group(function (){
-    Route::get('/', function () {
-        return view('admin.welcome');
-    })->name('admin.index');
-
     Route::get('/home', [AdminController::class, 'index'])->name('admin.home');
 
+    Route::get('/', [LoginController::class, 'showAdminLogin'])->name('admin.login.form');
     Route::get('/login', [LoginController::class, 'showAdminLogin'])->name('admin.login.form');
     Route::post('/login', [LoginController::class, 'adminLogin'])->name('admin.login');
     
