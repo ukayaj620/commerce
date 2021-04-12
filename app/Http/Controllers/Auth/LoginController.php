@@ -39,7 +39,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('guest:admin')->except('logout');
+        $this->middleware('guest:admin')->except('adminLogout');
     }
 
     public function showAdminLogin()
@@ -65,6 +65,7 @@ class LoginController extends Controller
     public function adminLogout(Request $request)
     {
         Auth::guard('admin')->logout();
-        return redirect('/admin');
+        $request->session()->invalidate();
+        return redirect(route('admin.index'));
     }
 }
