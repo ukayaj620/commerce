@@ -5,41 +5,44 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductImage;
-use App\Models\Categories;
+use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
     public function add()
     {
-        $categories = Categories::all();
-        return view('pages.product.add', [
-            'categories' => $categories
+        $categories = Category::all();
+        return view('admin.product.add', [
+            'categories' => $categories,
+            'url' => 'admin'
         ]);
     }
 
     public function edit($id)
     {
-        $categories = Categories::all();
+        $categories = Category::all();
         $product = Product::find($id);
-        return view('pages.product.edit', [
+        return view('admin.product.edit', [
             'categories' => $categories,
             'product' => $product,
+            'url' => 'admin'
         ]);
     }
 
     public function fetchAll()
     {
         $products = Product::all();
-        return view('pages.product.product', [
-            'products' => $products
+        return view('admin.product.index', [
+            'products' => $products,
+            'url' => 'admin'
         ]);
     }
 
     public function fetchById($id)
     {
         $product = Product::find($id);
-        return view('pages.product.view', [
+        return view('admin.product.view', [
             'product' => $product
         ]);
     }
