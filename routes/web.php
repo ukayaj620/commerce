@@ -53,5 +53,5 @@ Route::prefix('admin')->group(function (){
         Route::delete('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
         Route::get('/fetch/{id}', [ProductController::class, 'fetchById'])->name('product.byId');
         Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
-    })
+    });
 });
