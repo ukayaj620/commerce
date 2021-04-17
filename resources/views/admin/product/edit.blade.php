@@ -12,6 +12,15 @@
     <img class="col-8 shadow rounded" src="{{ asset('storage/' .$product->product_image->image_path) }}">
   </div>
   <div class="col-8">
+    @if ($errors->any())
+      <div class="alert alert-danger mt-2">
+        <ul>
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
     <form class="container w-75 mb-4" method="POST" action="{{ route('product.update') }}" enctype="multipart/form-data">
       @csrf
       @method('PUT')
@@ -47,6 +56,11 @@
       <div class="form-group">
         <label for="input-description">Description</label>
         <textarea class="form-control" id="input-description" name="description">{{ $product->description }}</textarea>
+      </div>
+      <p class="mb-2">Upload Product Photo</p>
+      <div class="custom-file mb-4">
+        <input type="file" class="custom-file-input" id="upload-image" name="image">
+        <label class="custom-file-label" for="image">Choose file</label>
       </div>
       <button type="submit" class="btn btn-primary w-100">Update Product</button>
     </form>

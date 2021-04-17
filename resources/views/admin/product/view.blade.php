@@ -4,7 +4,7 @@
 <div class="d-flex flex-row w-100 align-items-center justify-content-between">
   <div class="d-flex flex-row">
     <a type="button" class="btn btn-info mr-3" style="width: fit-content;" href="{{ route('product.fetchAll') }}">Back</a>
-    <h3>{{ $product->product_name }} Details</h3>
+    <h3><strong>{{ $product->product_name }}</strong> Details</h3>
   </div>
   <div class="d-flex flex-row">
     <a

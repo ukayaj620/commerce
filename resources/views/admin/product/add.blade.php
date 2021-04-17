@@ -1,6 +1,16 @@
 @extends('admin.home')
 
 @section('menu')
+@if ($errors->any())
+  <div class="alert alert-danger mb-2">
+    <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
+
 <form class="container w-50 mb-4" method="POST" action="{{ route('product.create') }}" enctype="multipart/form-data">
   @csrf
   <div class="form-group">
