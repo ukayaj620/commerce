@@ -111,7 +111,21 @@ class ProductController extends Controller
 
         $product->categories()->attach($request->input('category'));
 
-        return redirect(route('product.byId'));
+        if($request->hasFile('image')) {
+            $product_image = ProductImage::where('product_id', '=', $product->id)->first();
+
+            Storage::delete('/public/' . $product_image->image_path);
+
+            $photo = $request->file('image');
+            $image_path = uniqid() . '.' .$photo->extension();
+            $path = $photo->storeAs('public/', $image_path);
+
+            ProductImage::whereId($product_image->id)->update([
+                'image_path' => $image_path
+            ]);
+        }
+
+        return redirect(route('product.byId', ['id' => $product->id]));
     }
 
     public function delete($id)
