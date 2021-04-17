@@ -3,7 +3,7 @@
 @section('menu')
 <div style="container">
   <button 
-    class="btn btn-primary float-right my-4"
+    class="btn btn-primary float-right mb-4"
     type="button"
     data-toggle="modal"
     data-target="#addCategory"
