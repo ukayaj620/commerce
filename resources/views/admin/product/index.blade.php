@@ -17,7 +17,7 @@
         <th scope="col">Price</th>
         <th scope="col">Product Rate</th>
         <th scope="col">Stock</th>
-        <th scope="col">Weight</th>
+        <th scope="col">Weight(g)</th>
         <th scope="col">Category</th>
         <th scope="col">Actions</th>
       </tr>
