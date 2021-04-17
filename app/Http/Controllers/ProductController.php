@@ -130,6 +130,8 @@ class ProductController extends Controller
 
     public function delete($id)
     {
+        $product_image = ProductImage::where('product_id', '=', $id)->first();
+        Storage::delete('/public/' . $product_image->image_path);
         Product::find($id)->delete();
         return redirect(route('product.fetchAll'));
     }
