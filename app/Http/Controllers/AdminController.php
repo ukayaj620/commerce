@@ -23,6 +23,6 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.home', ['url' => 'admin']);
+        return redirect(route('product.fetchAll'));
     }
 }

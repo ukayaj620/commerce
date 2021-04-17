@@ -81,7 +81,7 @@ class ProductController extends Controller
             'image_path' => $image_path
         ]);
 
-        return redirect('/product');
+        return redirect(route('product.byId', ['id' => $product->id]));
     }
 
     public function update(Request $request)
@@ -111,12 +111,12 @@ class ProductController extends Controller
 
         $product->categories()->attach($request->input('category'));
 
-        return redirect('/product');
+        return redirect(route('product.byId'));
     }
 
     public function delete($id)
     {
         Product::find($id)->delete();
-        return redirect('/product');
+        return redirect(route('product.fetchAll'));
     }
 }
