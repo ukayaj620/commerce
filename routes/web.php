@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use App\Models\Product;
 
 /*
@@ -31,6 +32,10 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::prefix('cart')->group(function () {
+    Route::get('/create', [CartController::class, 'create'])->name('cart.create');
+});
 
 Route::prefix('admin')->group(function (){
     Route::get('/home', [AdminController::class, 'index'])->name('admin.home');
