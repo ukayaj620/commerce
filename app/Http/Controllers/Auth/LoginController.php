@@ -66,6 +66,6 @@ class LoginController extends Controller
     {
         Auth::guard('admin')->logout();
         $request->session()->invalidate();
-        return redirect(route('admin.index'));
+        return redirect(route('admin.login.form'));
     }
 }
