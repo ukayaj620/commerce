@@ -9,6 +9,10 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
 
     public function fetchAll() {
         $categories = Category::all();
