@@ -45,7 +45,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
 
-                        @isset($url)
+                        @if(isset($url) && $url == 'admin')
                             @guest('admin')
                                 @if (Route::has('admin.login'))
                                     <li class="nav-item">
@@ -109,7 +109,7 @@
                                     </div>
                                 </li>
                             @endguest
-                        @endisset
+                        @endif
                     </ul>
                 </div>
             </div>
