@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -23,6 +24,14 @@ class CartController extends Controller
         }
 
         return $cart;
+    }
+
+    public function product_detail($id)
+    {
+        $product = Product::find($id);
+        return view('client.product.view', [
+            'product' => $product
+        ]); 
     }
 
     public function create(Request $request)
