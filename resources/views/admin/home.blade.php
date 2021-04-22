@@ -8,6 +8,9 @@
             <a href="{{ route('category.fetchAll') }}" class="col-12 list-group-item list-group-item-action" aria-current="true">
                 Category
             </a>
+            <a href="{{ route('courier.fetchAll') }}" class="col-12 list-group-item list-group-item-action" aria-current="true">
+                Courier
+            </a>
         </div>
     </div>
     <div class="col-9">
