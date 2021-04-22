@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CourierController;
 use App\Models\Product;
 
 /*
@@ -35,6 +36,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('cart')->group(function () {
     Route::get('/create', [CartController::class, 'create'])->name('cart.create');
+    Route::get('/product/detail/{id}', [CartController::class, 'product_detail'])->name('cart.product.detail');
 });
 
 Route::prefix('admin')->group(function (){
@@ -64,5 +66,12 @@ Route::prefix('admin')->group(function (){
         Route::delete('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
         Route::get('/fetch/{id}', [ProductController::class, 'fetchById'])->name('product.byId');
         Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    });
+
+    Route::prefix('courier')->group(function (){
+        Route::get('/', [CourierController::class, 'fetchAll'])->name('courier.fetchAll');
+        Route::post('/create', [CourierController::class, 'create'])->name('courier.create');
+        Route::put('/update', [CourierController::class, 'update'])->name('courier.update');
+        Route::delete('/delete/{id}', [CourierController::class, 'delete'])->name('courier.delete');
     });
 });
