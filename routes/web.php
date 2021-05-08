@@ -35,8 +35,12 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('cart')->group(function () {
-    Route::get('/create', [CartController::class, 'create'])->name('cart.create');
+    Route::get('/fetch', [CartController::class, 'fetch'])->name('cart.fetch');
+    Route::get('/fetch/detail/{id}', [CartController::class, 'fetch_detail'])->name('cart.fetch.detail');
     Route::get('/product/detail/{id}', [CartController::class, 'product_detail'])->name('cart.product.detail');
+    Route::post('/add', [CartController::class, 'add_product'])->name('cart.add_product');
+    Route::put('/update', [CartController::class, 'update_product'])->name('cart.update_product');
+    Route::delete('/delete/{product_id}', [CartController::class, 'remove_product'])->name('cart.delete_product');
 });
 
 Route::prefix('admin')->group(function (){

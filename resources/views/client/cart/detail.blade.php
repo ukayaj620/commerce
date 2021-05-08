@@ -48,8 +48,9 @@
       <p class="mr-4 font-weight-bold col-2">Price: </p>
       <h5 class="font-weight-bold col-9">Rp. {{ $product->price }},-</h5>
     </div>
-    <form method="POST" action="{{ route('cart.add_product') }}">
+    <form method="POST" action="{{ route('cart.update_product') }}">
       @csrf
+      @method('PUT')
       <input type="hidden" name="product_id" value="{{ $product->id }}" />
       <div class="d-flex flex-row align-items-center">
         <p class="mr-4 font-weight-bold mb-0 col-2">Quantity: </p>
@@ -61,7 +62,7 @@
                   <span class="fa fa-minus"></span>
                 </button>
               </span>
-              <input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="{{ $product->stock }}">
+              <input type="text" name="quantity" class="form-control input-number" value="{{ $product->pivot->qty }}" min="1" max="{{ $product->stock }}">
               <span class="input-group-append">
                 <button type="button" class="btn btn-outline-secondary btn-number" data-type="plus" data-field="quantity">
                   <span class="fa fa-plus"></span>
@@ -71,7 +72,12 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="ml-3 mt-4 btn btn-primary col-5">Insert to Cart</button>
+      <button type="submit" class="ml-3 mt-4 btn btn-warning col-7">Update Cart</button>
+    </form>
+    <form style="display:inline;" action="{{ route('cart.delete_product', ['product_id' => $product->id]) }}" method="POST">
+      @csrf
+      @method('DELETE')
+      <button type="submit" class="ml-3 mt-4 btn btn-danger col-7" onclick="return confirm('Are You Sure To Delete ?')">Remove from Cart</button>
     </form>
   </div>
 </div>
