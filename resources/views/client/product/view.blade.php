@@ -81,13 +81,13 @@ $('.btn-number').click(function(e){
     var maxValue = parseInt(input.attr('max'));
 
     if(currentVal >= minValue) {
-      $(".btn-number[data-type='minus'][data-field='"+name+"']").prop('disabled', false);
+      $(".btn-number[data-type='minus'][data-field='"+fieldName+"']").prop('disabled', false);
     } else {
       alert('Sorry, the minimum value was reached');
       $(this).val($(this).data('oldValue'));
     }
     if(currentVal <= maxValue) {
-      $(".btn-number[data-type='plus'][data-field='"+name+"']").prop('disabled', false);
+      $(".btn-number[data-type='plus'][data-field='"+fieldName+"']").prop('disabled', false);
     } else {
       alert('Sorry, the maximum value was reached');
       $(this).val($(this).data('oldValue'));
