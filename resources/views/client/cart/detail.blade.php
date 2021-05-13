@@ -3,7 +3,7 @@
 @section('content')
 <div class="d-flex flex-row container align-items-center justify-content-between">
   <div class="d-flex flex-row">
-    <a type="button" class="btn btn-info mr-3" style="width: fit-content;" href="{{ route('home') }}">Back</a>
+    <a type="button" class="btn btn-info mr-3" style="width: fit-content;" href="{{ route('cart.fetch') }}">Back</a>
     <h3>{{ $product->categories[0]->category_name }} >> <strong>{{ $product->product_name }}</strong></h3>
   </div>
 </div>

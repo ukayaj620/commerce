@@ -48,6 +48,10 @@
       <p class="mr-4 font-weight-bold col-2">Price: </p>
       <h5 class="font-weight-bold col-9">Rp. {{ $product->price }},-</h5>
     </div>
+    <div class="d-flex flex-row align-items-left">
+      <p class="mr-4 font-weight-bold col-2">In Stock: </p>
+      <h5 class="font-weight-bold col-9">{{ $product->stock }}</h5>
+    </div>
     <form method="POST" action="{{ route('cart.add_product') }}">
       @csrf
       <input type="hidden" name="product_id" value="{{ $product->id }}" />
